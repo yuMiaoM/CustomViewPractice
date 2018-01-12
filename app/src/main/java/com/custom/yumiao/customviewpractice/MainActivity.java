@@ -14,12 +14,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView tv= (TextView) findViewById(R.id.tv);
-        final BezierView bezierView= (BezierView) findViewById(R.id.bezier);
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bezierView.addImageView();
-            }
-        });
     }
 }

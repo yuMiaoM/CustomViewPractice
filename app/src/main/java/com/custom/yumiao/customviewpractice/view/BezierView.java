@@ -107,6 +107,8 @@ public class BezierView extends RelativeLayout {
                 view.setY(pointF.y);
                 view.setAlpha((float)1.0-animation.getAnimatedFraction());
             }
+
+
         });
         valueAnimator.start();
 

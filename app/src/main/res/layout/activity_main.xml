@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.custom.yumiao.customviewpractice.MainActivity">
 
     <TextView
@@ -12,12 +13,9 @@
         android:id="@+id/tv"
         />
 
-    <com.custom.yumiao.customviewpractice.view.BezierView
-        android:id="@+id/bezier"
-        android:layout_alignParentRight="true"
-        android:background="@color/colorPrimary"
-        android:layout_width="150dp"
-        android:layout_height="400dp"></com.custom.yumiao.customviewpractice.view.BezierView>
-
+    <com.custom.yumiao.customviewpractice.view.WaveView
+        android:layout_width="400dp"
+        app:wavecolor="@color/colorAccent"
+        android:layout_height="400dp" />
 
 </RelativeLayout>
