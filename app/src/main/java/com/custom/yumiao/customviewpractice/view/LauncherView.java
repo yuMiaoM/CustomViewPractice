@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.custom.yumiao.customviewpractice.R;
+import com.custom.yumiao.customviewpractice.view.viewutil.ViewPath;
+import com.custom.yumiao.customviewpractice.view.viewutil.ViewPoint;
 
 import java.util.ArrayList;
 
@@ -27,10 +29,16 @@ import java.util.ArrayList;
 
 public class LauncherView extends RelativeLayout {
 
-    private Paint mPaint;
     private int mWidth;
     private int mHeight;
     private ImageView red;
+    private ImageView blue;
+    private ImageView yellow;
+    private ImageView green;
+    private ViewPath redPath;
+    private ViewPath bluePath;
+    private ViewPath yellowPath;
+    private ViewPath greenPath;
 
 
     public LauncherView(Context context) {
@@ -38,53 +46,114 @@ public class LauncherView extends RelativeLayout {
     }
 
     public LauncherView(Context context, AttributeSet attrs) {
-        this(context, null, 0);
+        this(context, attrs, 0);
     }
 
     public LauncherView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
-    private void init() {
-        LayoutParams lp=new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        lp.addRule(CENTER_HORIZONTAL,TRUE);
-        lp.addRule(CENTER_VERTICAL,TRUE);
 
-        red =new ImageView(getContext());
+    private void init() {
+        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        lp.addRule(CENTER_HORIZONTAL, TRUE);
+        lp.addRule(CENTER_VERTICAL, TRUE);
+
+        red = new ImageView(getContext());
         red.setImageResource(R.drawable.red);
         red.setLayoutParams(lp);
         addView(red);
 
-        ArrayList<PointF> pointFs=new ArrayList<>();
-        pointFs.add(new PointF(0.0f,0.0f));
-        pointFs.add(new PointF(100f,100f));
-        pointFs.add(new PointF(200f,200f));
-        pointFs.add(new PointF(300,300f));
-        pointFs.add(new PointF(400f,100f));
+        blue = new ImageView(getContext());
+        blue.setImageResource(R.drawable.blue);
+        blue.setLayoutParams(lp);
+        addView(blue);
 
-        ObjectAnimator objectAnimator=ObjectAnimator.ofObject(red,"", new TypeEvaluator<PointF>() {
+        yellow = new ImageView(getContext());
+        yellow.setImageResource(R.drawable.yellow);
+        yellow.setLayoutParams(lp);
+        addView(yellow);
 
-            @Override
-            public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
-                Log.d("TAG","fraction:"+fraction+"-startValue:"+startValue.x+"-endValue:"+endValue.x);
-                red.setX(endValue.x);
-                red.setY(endValue.y);
-                return null;
-            }
-        }
-        , pointFs.toArray());
-        objectAnimator.setDuration(5000);
-        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
-        objectAnimator.start();
+        green = new ImageView(getContext());
+        green.setImageResource(R.drawable.green);
+        green.setLayoutParams(lp);
+        addView(green);
+
 
     }
+
+    public void setAnimation(ImageView view, ViewPath path) {
+        ObjectAnimator objectAnimator = ObjectAnimator.ofObject(new ViewObject(view), "xy", new TypeEvaluator<ViewPoint>() {
+            @Override
+            public ViewPoint evaluate(float fraction, ViewPoint startValue, ViewPoint endValue) {
+                float x = 0;
+                float y = 0;
+                x = (endValue.x - startValue.x) * fraction;
+                y = (endValue.y - startValue.y) * fraction;
+                Log.e("TAG", "x:" + x + "Y:" + y);
+                return new ViewPoint(x, y);
+            }
+        }, path.getPoints().toArray());
+        objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        objectAnimator.setDuration(5000);
+        objectAnimator.start();
+    }
+
+    public void startAnimation() {
+        setAnimation(red, redPath);
+        setAnimation(blue, bluePath);
+        setAnimation(yellow, yellowPath);
+        setAnimation(green, greenPath);
+
+    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mWidth =getMeasuredWidth();
-        mHeight =getMeasuredHeight();
+        mWidth = getMeasuredWidth();
+        mHeight = getMeasuredHeight();
+        initViewPath();
 
     }
+
+    /**
+     * 初始化viewpath lineTO
+     */
+    private void initViewPath() {
+        redPath = new ViewPath();
+        redPath.moveTo(0, 0);
+        redPath.lineTo(mWidth / 5 - mWidth / 2, 0);
+
+        bluePath = new ViewPath();
+        bluePath.moveTo(0, 0);
+        bluePath.lineTo(2 * mWidth / 5 - mWidth / 2, 0);
+
+        yellowPath = new ViewPath();
+        yellowPath.moveTo(0, 0);
+        yellowPath.lineTo(mWidth / 2 - 2 * mWidth / 5, 0);
+
+        greenPath = new ViewPath();
+        greenPath.moveTo(0, 0);
+        greenPath.lineTo(mWidth / 2 - mWidth / 5, 0);
+
+
+    }
+
+    class ViewObject {
+        ImageView iv;
+
+        public ViewObject(ImageView target) {
+            this.iv = target;
+
+        }
+
+        public void setXy(ViewPoint vp) {
+            iv.setTranslationX(vp.x);
+            iv.setTranslationY(vp.y);
+
+
+        }
+    }
+
 }

@@ -12,7 +12,7 @@ package com.custom.yumiao.customviewpractice.view.viewutil;
  * Why & What is modified:
  */
 public class ViewPoint {
-    float x ,y;
+    public float x ,y;
 
     float x1,y1;
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.custom.yumiao.customviewpractice.view.BezierView;
+import com.custom.yumiao.customviewpractice.view.LauncherView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final LauncherView launcherView= (LauncherView) findViewById(R.id.launcherview);
+        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launcherView.startAnimation();
+            }
+        });
+        //launcherView.startAnimation();
 
     }
 }
