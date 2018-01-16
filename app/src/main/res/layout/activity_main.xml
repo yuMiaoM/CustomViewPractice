@@ -3,19 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.custom.yumiao.customviewpractice.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/tv"
-        />
-
-    <com.custom.yumiao.customviewpractice.view.WaveView
-        android:layout_width="400dp"
-        app:wavecolor="@color/colorAccent"
-        android:layout_height="400dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#ffff0000"
+        android:dividerHeight="10dp"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
