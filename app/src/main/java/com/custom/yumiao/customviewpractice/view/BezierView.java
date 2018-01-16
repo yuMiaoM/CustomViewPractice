@@ -41,11 +41,11 @@ public class BezierView extends RelativeLayout {
     }
 
     private void init() {
-        drawbles[0] = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher);
-        drawbles[1] = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher_round);
-        drawbles[2] = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher_round);
-        drawbles[3] = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher);
-        drawbles[4] = ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher_round);
+        drawbles[0] = ContextCompat.getDrawable(getContext(), R.mipmap.ic1);
+        drawbles[1] = ContextCompat.getDrawable(getContext(), R.mipmap.ic2);
+        drawbles[2] = ContextCompat.getDrawable(getContext(), R.mipmap.ic3);
+        drawbles[3] = ContextCompat.getDrawable(getContext(), R.mipmap.ic4);
+        drawbles[4] = ContextCompat.getDrawable(getContext(), R.mipmap.ic5);
         //imageView 大小以及在布局中位置
         layoutparams = new LayoutParams(100, 100);
         layoutparams.addRule(CENTER_HORIZONTAL, TRUE);
