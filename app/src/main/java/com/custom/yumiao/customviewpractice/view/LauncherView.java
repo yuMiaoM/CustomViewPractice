@@ -45,6 +45,10 @@ public class LauncherView extends RelativeLayout {
     private ViewPath greenPath;
     private ImageView logo;
     private LayoutParams lp;
+    private AnimatorSet animatorSet1;
+    private AnimatorSet animatorSet2;
+    private AnimatorSet animatorSet3;
+    private AnimatorSet animatorSet4;
 
 
     public LauncherView(Context context) {
@@ -169,10 +173,15 @@ public class LauncherView extends RelativeLayout {
     public void startAnimation() {
         removeAllViews();
         init();
-        setAnimation(red, redPath).start();
-        setAnimation(blue, bluePath).start();
-        setAnimation(yellow, yellowPath).start();
-        setAnimation(green, greenPath).start();
+        animatorSet1 = setAnimation(red, redPath);
+        animatorSet2 = setAnimation(blue, bluePath);
+        animatorSet3 = setAnimation(yellow, yellowPath);
+        animatorSet4 = setAnimation(green, greenPath);
+
+        animatorSet1.start();
+        animatorSet2.start();
+        animatorSet3.start();
+        animatorSet4.start();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

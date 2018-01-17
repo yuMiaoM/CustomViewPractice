@@ -1,14 +1,22 @@
 package com.custom.yumiao.customviewpractice;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.custom.yumiao.customviewpractice.view.BezierView;
 import com.custom.yumiao.customviewpractice.view.LauncherView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +32,5 @@ public class MainActivity extends AppCompatActivity {
                 launcherView.startAnimation();
             }
         });
-        //launcherView.startAnimation();
-
     }
 }
