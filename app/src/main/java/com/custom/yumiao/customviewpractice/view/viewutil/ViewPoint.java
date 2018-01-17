@@ -14,11 +14,11 @@ package com.custom.yumiao.customviewpractice.view.viewutil;
 public class ViewPoint {
     public float x ,y;
 
-    float x1,y1;
+    public float x1,y1;
 
-    float x2,y2;
+    public float x2,y2;
 
-    int operation;
+    public int operation;
 
     public ViewPoint(float x, float y) {
         this.x = x;
