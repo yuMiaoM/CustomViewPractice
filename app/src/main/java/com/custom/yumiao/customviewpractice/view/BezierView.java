@@ -17,13 +17,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.custom.yumiao.customviewpractice.R;
+import com.custom.yumiao.customviewpractice.view.viewutil.StartAnimator;
 
 /**
  * Created by yumiaomiao on 2018/1/11.
  * 直播点赞动画view
  */
 
-public class BezierView extends RelativeLayout {
+public class BezierView extends RelativeLayout implements StartAnimator{
 
     Drawable[] drawbles = new Drawable[5];
     private int measuredHeight;
@@ -123,6 +124,11 @@ public class BezierView extends RelativeLayout {
     public PointF getRandomPoint() {
         PointF p = new PointF((float) Math.random() * measuredWidth, (float) Math.random() * measuredHeight / 4);
         return p;
+    }
+
+    @Override
+    public void start() {
+        addImageView();
     }
 
     public class BezierEvaluator implements TypeEvaluator<PointF> {

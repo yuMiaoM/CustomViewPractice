@@ -21,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.custom.yumiao.customviewpractice.R;
+import com.custom.yumiao.customviewpractice.view.viewutil.StartAnimator;
 import com.custom.yumiao.customviewpractice.view.viewutil.ViewPath;
+import com.custom.yumiao.customviewpractice.view.viewutil.ViewPathEvaluator;
 import com.custom.yumiao.customviewpractice.view.viewutil.ViewPoint;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
  * 启动页动画view
  */
 
-public class LauncherView extends RelativeLayout {
+public class LauncherView extends RelativeLayout implements StartAnimator {
 
     private int mWidth;
     private int mHeight;
@@ -99,37 +101,42 @@ public class LauncherView extends RelativeLayout {
 
     }
 
-    public AnimatorSet setAnimation(final ImageView view, ViewPath path) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofObject(new ViewObject(view), "xy", new TypeEvaluator<ViewPoint>() {
-            @Override
-            public ViewPoint evaluate(float t, ViewPoint startValue, ViewPoint endValue) {
-                float x = 0;
-                float y = 0;
-
-                if (endValue.operation == ViewPath.LINE) {
-                    x = (endValue.x - startValue.x) * t;
-                    y = (endValue.y - startValue.y) * t;
-                } else if (endValue.operation == ViewPath.CURVE) {
-                    float oneMinusT = 1 - t;
-                    x = oneMinusT * oneMinusT * oneMinusT * startValue.x +
-                            3 * oneMinusT * oneMinusT * t * endValue.x +
-                            3 * oneMinusT * t * t * endValue.x1 +
-                            t * t * t * endValue.x2;
-
-                    y = oneMinusT * oneMinusT * oneMinusT * startValue.x +
-                            3 * oneMinusT * oneMinusT * t * endValue.y +
-                            3 * oneMinusT * t * t * endValue.y1 +
-                            t * t * t * endValue.y2;
-                }
-
-                Log.e("TAG","view:"+(String)view.getTag().toString()+"t:"+t+ "x:" + x + "Y:" + y+"endValue.operation:"+endValue.operation);
-                return new ViewPoint(x, y);
-            }
-        }, path.getPoints().toArray());
+    public AnimatorSet setAnimation(ImageView view, ViewPath path) {
+        ViewPathEvaluator customEvaluator=new ViewPathEvaluator();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofObject(new ViewObject(view), "xy",customEvaluator, path.getPoints().toArray());
         objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        objectAnimator.setDuration(2400);
+        objectAnimator.setDuration(2600);
         return addAnimator(objectAnimator,view);
     }
+
+    public  class  CustomEvaluator implements TypeEvaluator<ViewPoint>{
+
+        @Override
+        public ViewPoint evaluate(float t, ViewPoint startValue, ViewPoint endValue) {
+            float x = 0;
+            float y = 0;
+
+            if (endValue.operation == ViewPath.LINE) {
+                x = (endValue.x - startValue.x) * t;
+                y = (endValue.y - startValue.y) * t;
+            } else if (endValue.operation == ViewPath.CURVE) {
+                float oneMinusT = 1 - t;
+                x = oneMinusT * oneMinusT * oneMinusT * startValue.x +
+                        3 * oneMinusT * oneMinusT * t * endValue.x +
+                        3 * oneMinusT * t * t * endValue.x1 +
+                        t * t * t * endValue.x2;
+
+                y = oneMinusT * oneMinusT * oneMinusT * startValue.x +
+                        3 * oneMinusT * oneMinusT * t * endValue.y +
+                        3 * oneMinusT * t * t * endValue.y1 +
+                        t * t * t * endValue.y2;
+            }
+
+            Log.e("TAG","view:"+""+"t:"+t+ "x:" + x + "Y:" + y+"endValue.operation:"+endValue.operation);
+            return new ViewPoint(x, y);
+        }
+    }
+
 
     private AnimatorSet addAnimator(ObjectAnimator objectAnimator, final ImageView view) {
         AnimatorSet set=new AnimatorSet();
@@ -237,6 +244,11 @@ public class LauncherView extends RelativeLayout {
         greenPath.curveTo(700, mHeight / 3 * 2, -mWidth / 2, mHeight / 2, 0, 0);
 
 
+    }
+
+    @Override
+    public void start() {
+        startAnimation();
     }
 
     private class AnimEndListener extends AnimatorListenerAdapter {

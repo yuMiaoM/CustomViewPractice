@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.custom.yumiao.customviewpractice.R;
+import com.custom.yumiao.customviewpractice.view.viewutil.StartAnimator;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,7 +22,7 @@ import java.util.TimerTask;
  * 水流波浪效果
  */
 
-public class WaveView extends View {
+public class WaveView extends View implements StartAnimator{
 
 
     private int color;
@@ -119,4 +120,8 @@ public class WaveView extends View {
     }
 
 
+    @Override
+    public void start() {
+
+    }
 }

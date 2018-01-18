@@ -5,15 +5,9 @@
     android:layout_height="match_parent"
     tools:context="com.custom.yumiao.customviewpractice.MainActivity">
 
-    <Button
-        android:id="@+id/btn"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="start" />
-
-    <com.custom.yumiao.customviewpractice.view.LauncherView
-        android:id="@+id/launcherview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.custom.yumiao.customviewpractice.view.LauncherView>
+        android:layout_height="match_parent"></FrameLayout>
 
 </RelativeLayout>
