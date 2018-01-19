@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by yumiaomiao on 2018/1/18.
  */
 
-public class BaseFragment extends Fragment {
+public class BaseViewFragment extends Fragment {
 
     private Bundle arguments;
     private int layoutId;
@@ -46,25 +46,4 @@ public class BaseFragment extends Fragment {
         return view;
     }
 
-    public void test(){
-        final ArrayList<PointF> floats = new ArrayList<>();
-        floats.add(new PointF(1, 1)) ;
-        floats.add(new PointF(2, 2)) ;
-        floats.add(new PointF(3, 3)) ;
-
-        ObjectAnimator ob = ObjectAnimator.ofObject(new ViewObject(), "f", new TypeEvaluator<PointF>() {
-            @Override
-            public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
-                Log.d("TAG", "evaluate() called with: fraction = [" + fraction + "], startValue = [" + startValue.x + "], endValue = [" + endValue.x + "]");
-                return null;
-            }
-        }, floats.toArray());
-        ob.setDuration(300);
-        ob.setInterpolator(new LinearInterpolator());
-        ob.start();
-    }
-    class  ViewObject{
-        public void setF(PointF f){
-        }
-    }
 }

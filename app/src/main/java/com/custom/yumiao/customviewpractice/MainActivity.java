@@ -17,15 +17,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startFragment(R.layout.fragment_waveview);
-
-    }
-
-    public void startFragment(int id) {
+       // startFragment(R.layout.fragment_waveview);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        Fragment fragment = new BaseFragment();
+        Fragment fragment = new BezierDemoFragment();
+        ft.add(R.id.container, fragment);
+        ft.commit();
+    }
+
+    public void startFragment(int id) {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        Fragment fragment = new BaseViewFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("layoutId", id);
         fragment.setArguments(bundle);

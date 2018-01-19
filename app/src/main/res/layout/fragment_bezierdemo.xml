@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_1"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="控制点1" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:id="@+id/rb_2"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="控制点1" />
+    </RadioGroup>
+
+    <com.custom.yumiao.customviewpractice.view.BezierSampleDemo
+        android:id="@+id/view"
+        android:layout_below="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"></com.custom.yumiao.customviewpractice.view.BezierSampleDemo>
+
+
+</RelativeLayout>
