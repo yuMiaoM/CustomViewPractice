@@ -65,7 +65,6 @@ public class BezierView extends RelativeLayout implements StartAnimator{
 
     /**
      * 开始缩放动画
-     *
      * @param view
      */
     public void startScaleAnimator(View view) {

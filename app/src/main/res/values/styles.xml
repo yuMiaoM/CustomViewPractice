@@ -11,4 +11,14 @@
         <attr name="wavecolor" format="color"></attr>
     </declare-styleable>
 
+    <declare-styleable name="AddShopButton">
+        <attr name="add_text_color" format="color|reference"></attr>
+        <attr name="add_text_bg" format="color|reference"></attr>
+        <attr name="add_text" format="string|reference"></attr>
+        <attr name="add_text_size" format="dimension|reference"></attr>
+        <attr name="add_padding" format="dimension|reference"></attr>
+        <attr name="add_corners" format="dimension|reference"></attr>
+
+    </declare-styleable>
+
 </resources>

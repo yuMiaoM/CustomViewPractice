@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
        // startFragment(R.layout.fragment_waveview);
 
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        Fragment fragment = new BezierDemoFragment();
-        ft.add(R.id.container, fragment);
-        ft.commit();
     }
 
     public void startFragment(int id) {
