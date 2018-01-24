@@ -19,12 +19,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.custom.yumiao.customviewpractice.R;
+import com.custom.yumiao.customviewpractice.view.viewutil.StartAnimator;
 
 /**
  * Created by yumiaomiao on 2018/1/22.
  */
 
-public class AddShopButton extends View {
+public class AddShopButton extends View implements StartAnimator {
 
 
     private final float mTextSize;
@@ -36,7 +37,7 @@ public class AddShopButton extends View {
     private int mWidth;
     private int mHeight;
     private RectF bgRectF;
-    private String mText;
+    private String mText = "无标题";
     private float aFloat;
     private float mTextWith;
     private float mAddPadding;
@@ -79,13 +80,13 @@ public class AddShopButton extends View {
     private void init() {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(mTextColor);
-        mTextPaint.setStrokeWidth(10);
+        mTextPaint.setStrokeWidth(6);
         mTextPaint.setTextSize(mTextSize);
 
         mTextBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextBgPaint.setColor(mTextBg);
         mTextBgPaint.setStyle(Paint.Style.FILL);
-        mTextBgPaint.setStrokeWidth(5);
+        mTextBgPaint.setStrokeWidth(4);
 
         addRegion = new Region();
         reduceRegion = new Region();
@@ -240,10 +241,12 @@ public class AddShopButton extends View {
         float width = r - l;// bgrectF的宽
         float height = b - t;// bgrectF的高
 
-        canvas.drawColor(Color.GRAY);
         bgRectF = new RectF(l, t, r, b);
         mTextBgPaint.setStyle(Paint.Style.FILL);
+        mTextBgPaint.setAlpha(255);
         canvas.drawRoundRect(bgRectF, mCorners, mCorners, mTextBgPaint);
+        Log.e("TAG", l + "-" + t + "-" + r + "-" + b+ "-" + "-" + "-");
+
         mTextWith = mTextPaint.measureText(mText);
         if (!isBganistart) {
             //计算text 位置  mTextPaint.descent()+mTextPaint.ascent() 基线的上移与下移的和 为文字的高度
@@ -254,10 +257,9 @@ public class AddShopButton extends View {
             float textWidth = mTextPaint.measureText(strCount);
             float textHeight = mTextPaint.ascent() + mTextPaint.descent();
 
-            float x=mWidth/2-textWidth/2;
-            float y=mHeight/2-textHeight/2;
-            Log.e("TAG",textWidth+"-"+textHeight+"-"+x+"-"+y+"-"+"-"+"-");
-            canvas.drawText(strCount,x,y,mTextPaint);
+            float x = mWidth / 2 - textWidth / 2;
+            float y = mHeight / 2 - textHeight / 2;
+            canvas.drawText(strCount, x, y, mTextPaint);
         }
         if (isHide) {
             float x = mWidth - height / 2 - mAddPadding;
@@ -267,10 +269,12 @@ public class AddShopButton extends View {
             canvas.drawLine(x, y - height / 4, x, y + height / 4, mTextPaint);
             addF = new Rect((int) (x - height / 2), (int) (y - height / 2), (int) (x + height / 2), (int) (y + height / 2));
             canvas.save();
+
             float translats = x - y;
             canvas.translate(x - translats * roundAniTime, y);
             canvas.rotate(-roundAniTime * 360);
             mTextBgPaint.setStyle(Paint.Style.STROKE);
+            mTextBgPaint.setAlpha((int) (255 * roundAniTime));
             canvas.drawCircle(0, 0, height / 2, mTextBgPaint);
             canvas.drawLine(-height / 4, 0, height / 4, 0, mTextPaint);
             canvas.save();
@@ -280,6 +284,10 @@ public class AddShopButton extends View {
         }
 
 
+    }
+
+    @Override
+    public void start() {
 
     }
 }
