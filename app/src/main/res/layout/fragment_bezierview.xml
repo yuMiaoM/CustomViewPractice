@@ -13,7 +13,7 @@
     <com.custom.yumiao.customviewpractice.view.BezierView
         android:id="@+id/view"
         android:layout_centerInParent="true"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="match_parent"></com.custom.yumiao.customviewpractice.view.BezierView>
 
 

@@ -45,10 +45,8 @@ public class AddShopButton extends View implements StartAnimator {
     private boolean isHide = false;
     private boolean isBganistart = false;
     private float roundAniTime;
-    private ValueAnimator roundAni;
-    private Region addRegion;
-    private Region reduceRegion;
-    private ValueAnimator valueAnimator;
+    private ValueAnimator roundAni;//减号的运行动画
+    private ValueAnimator valueAnimator; //文字背景条的动画
     private Rect addF;
     private Rect reduceF;
     private boolean isFinish;
@@ -88,8 +86,6 @@ public class AddShopButton extends View implements StartAnimator {
         mTextBgPaint.setStyle(Paint.Style.FILL);
         mTextBgPaint.setStrokeWidth(4);
 
-        addRegion = new Region();
-        reduceRegion = new Region();
 
     }
 
