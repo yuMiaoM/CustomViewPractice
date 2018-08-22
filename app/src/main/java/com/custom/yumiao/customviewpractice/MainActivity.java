@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         mainDatas.add(new MainData("点赞动画",R.layout.fragment_bezierview));
         mainDatas.add(new MainData("启动动画",R.layout.fragment_launcherview));
         mainDatas.add(new MainData("水波动画",R.layout.fragment_waveview));
+        mainDatas.add(new MainData("测试动画",R.layout.fragment_vdhview));
+
+
     }
 
     public class MainAdapter extends AppBaseAdapter<MainData> {

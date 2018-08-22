@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="开始动画" />
+
+    <com.custom.yumiao.customviewpractice.view.VDHLayout
+        android:layout_width="match_parent"
+        android:background="#9e9e9e"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="#44ff0000"
+            android:text="I can be dragged !"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#44ff0000"
+            android:text="I can be dragged !"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#44ff0000"
+            android:text="I can be dragged !"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+
+
+    </com.custom.yumiao.customviewpractice.view.VDHLayout>
+
+
+</RelativeLayout>
